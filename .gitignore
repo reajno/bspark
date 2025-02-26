@@ -13,6 +13,7 @@ dist-ssr
 *.local
 MOCKAPI.json
 README.md
+.env
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
