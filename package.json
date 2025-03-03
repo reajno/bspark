@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "luxon": "^3.5.0",
+    "maplibre-gl": "^4.7.1",
+    "radar-sdk-js": "^4.4.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
