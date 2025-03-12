@@ -22,6 +22,7 @@ const useMarkers = (mapRef) => {
 
   const addParkingMarkers = (locations) => {
     try {
+      console.log(locations);
       locations.map((location) => {
         const key = `${location.meter_no}`;
 

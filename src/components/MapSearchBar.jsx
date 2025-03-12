@@ -17,7 +17,7 @@ const MapSearchBar = ({ mapRef }) => {
           responsive: true,
           width: "600px",
           maxHeight: "600px",
-          placeholder: "Search address",
+          placeholder: "Search destination",
           limit: 8,
           minCharacters: 3,
           near: { latitude: -27.4698, longitude: 153.0251 },
