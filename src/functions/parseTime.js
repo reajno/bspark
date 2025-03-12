@@ -26,7 +26,7 @@ const parseTime = (operational_time, operational_day) => {
       // E.G. days = [1, 2, 3, 4, 5]
       days = mapDays(daysString);
     } else {
-      days = operational_day;
+      days = [operational_day];
     }
     result.days = days;
     return result;
