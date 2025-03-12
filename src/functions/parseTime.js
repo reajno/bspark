@@ -7,12 +7,15 @@ const parseTime = (operational_time, operational_day) => {
     // Replace parentheses with a space
     .replace(/\((.*?)\)/g, " $1")
     // Replace "," with "-" between letters
-    .replace(/(?<=[A-Z]),(?=[A-Z])/g, "-");
+    .replace(/(?<=[A-Z]),(?=[A-Z])/g, "-")
+    // Remove any digit(s) followed by 'P'
+    .replace(/\d+P(?=\s|$)/g, "")
+    // Replace two or more spaces with a comma and a space
+    .replace(/\s{2,}/g, ", ");
   // Split by active time blocks
   // // E.G. formatted result = 7AM-7PM, 7PM-10PM MON-FRI, 7AM-7PM SAT-SUN
 
-  const operationalBlocks = formatted.split(/,\s?/);
-
+  const operationalBlocks = formatted.trim().split(/,\s?/);
   return operationalBlocks.map((block) => {
     // E.G. split result = [["7AM-7PM", undefined], ["7PM-10PM", "MON-FRI"], ["7AM-7PM, "SAT-SUN"]]
     const [timeRange, daysString] = block.split(" ");

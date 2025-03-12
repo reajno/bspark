@@ -11,6 +11,8 @@ const parseDays = (operational_day) => {
       return mapDays("MON-SUN"); // [1,2,3,4,5,6,7]
     case "SAT-SUN":
       return mapDays("SAT-SUN"); // [6,7]
+    case "SAT":
+      return mapDays("SAT"); // [6]
     default:
       break;
   }
