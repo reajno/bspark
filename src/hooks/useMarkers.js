@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import Radar from "radar-sdk-js";
 import useParkingData from "./useParkingData";
+import useParkingStatus from "./useParkingStatus";
 
 const useMarkers = (mapRef) => {
   const parkingMarkersRef = useRef(new Map());
@@ -13,6 +14,8 @@ const useMarkers = (mapRef) => {
     destination ? destination.longitude : null
   );
 
+  const { getStatus } = useParkingStatus();
+
   useEffect(() => {
     if (destination && parkingLocations && parkingLocations.length > 0) {
       clearParkingMarkers();
@@ -24,19 +27,21 @@ const useMarkers = (mapRef) => {
     try {
       locations.map((location) => {
         const key = `${location.meter_no}`;
+        const parkingStatus = getStatus(location.operational_time);
 
         // ADD NEW MARKERS
         if (!parkingMarkersRef.current.has(key)) {
           const marker = Radar.ui
             .marker({
-              color: "#000257",
+              color: parkingStatus.isFree ? "#51b77b" : "#db3d3a",
               width: 40,
               height: 80,
               popup: {
                 html: `<strong>${location.street}</strong>
             <br>Bays: ${location.veh_bays}<br>Restrictions: ${
                   location.restrictions || "None"
-                } <br> Distance: ${Number.parseInt(location.distance)}m`,
+                } <br> Distance: ${Number.parseInt(location.distance)}m
+                `,
               },
             })
             .setLngLat([location.longitude, location.latitude])
