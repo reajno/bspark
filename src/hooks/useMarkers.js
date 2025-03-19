@@ -41,6 +41,14 @@ const useMarkers = (mapRef) => {
             <br>Bays: ${location.veh_bays}<br>Restrictions: ${
                   location.restrictions || "None"
                 } <br> Distance: ${Number.parseInt(location.distance)}m
+                <br>
+                <a 
+                href="https://www.google.com/maps?q=${location.latitude},${
+                  location.longitude
+                }"
+                target="_blank" rel="noopener noreferrer"
+                >Get Directions (Google Maps)</a>
+                
                 `,
               },
             })
